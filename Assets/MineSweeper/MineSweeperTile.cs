@@ -1,8 +1,11 @@
-﻿using Sirenix.OdinInspector;
+﻿using LucasUtilities;
+using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MineSweeperTile : MonoBehaviour
 {
@@ -10,9 +13,16 @@ public class MineSweeperTile : MonoBehaviour
     [Space(5)]
     public bool Mine = false;
     public int NearbyMines = 0;
-    public bool Flagged = false;
     [Space(5)]
+    public GameObject MinePrefab;
+    public Rigidbody PlateRigidbody;
     public TextMeshPro TileLabel;
+    public FloatToVector3Behavior FloatScript;
+    [Space(5)]
+    public MineSweeperTileEvent OnPress;
+
+    [Serializable]
+    public class MineSweeperTileEvent : UnityEvent { }
 
     private void OnDrawGizmos()
     {
@@ -26,14 +36,24 @@ public class MineSweeperTile : MonoBehaviour
     private void OnEnable()
     {
         CheckSurroundings();
+        CheckMine();
     }
 
     [Button("Step", ButtonSizes.Large)]
     public void Step()
     {
+        Reveal();
+    }
+
+    void CheckMine()
+    {
         if(Mine)
         {
-            Explode();
+            MinePrefab.SetActive(true);
+        }
+        else
+        {
+            MinePrefab.SetActive(false);
         }
     }
 
@@ -42,6 +62,7 @@ public class MineSweeperTile : MonoBehaviour
     {
         if(Mine)
         {
+            TileLabel.text = "";
             return;
         }
 
@@ -56,11 +77,37 @@ public class MineSweeperTile : MonoBehaviour
             }
         }
         TileLabel.text = NearbyMines.ToString();
+
+        if(NearbyMines == 0)
+        {
+            TileLabel.text = "";
+        }
     }
     
+    public void Reveal()
+    {
+        PlateRigidbody.isKinematic = true;
+        FloatScript.enabled = false;
+        OnPress.Invoke();
+
+        if (Mine)
+        {
+            Explode();
+        }
+        else
+        {
+            TileLabel.enabled = true;
+        }
+    }
+
     public void Explode()
     {
 
+    }
+
+    public void Hide()
+    {
+        TileLabel.enabled = false;
     }
 
 }
