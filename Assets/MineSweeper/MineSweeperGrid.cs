@@ -10,4 +10,5 @@ public class MineSweeperGrid : ScriptableObject
     public GameObject TilePrefab;
     public float TileSize = 1f;
     public float MineRatio = 0.1f;
+    public int MaxMines = 4;
 }

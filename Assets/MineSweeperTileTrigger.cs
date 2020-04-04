@@ -11,13 +11,8 @@ public class MineSweeperTileTrigger : MonoBehaviour
     {
         if(Helpers.IsInLayerMask(other.gameObject.layer, PlateLayerMask))
         {
-            Tile.Step();
+            Tile.TriggerTile();
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
     }
 
 }

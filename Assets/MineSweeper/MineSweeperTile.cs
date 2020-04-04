@@ -24,9 +24,11 @@ public class MineSweeperTile : MonoBehaviour
     [Serializable]
     public class MineSweeperTileEvent : UnityEvent { }
 
+    #region Unity APIs
+
     private void OnDrawGizmos()
     {
-        if(Mine)
+        if (Mine)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawCube(transform.position, transform.localScale);
@@ -35,19 +37,38 @@ public class MineSweeperTile : MonoBehaviour
 
     private void OnEnable()
     {
-        CheckSurroundings();
-        CheckMine();
+        ResetTile();
     }
 
-    [Button("Step", ButtonSizes.Large)]
-    public void Step()
+    #endregion
+
+    #region Main Tile Methods
+
+    [Button("Trigger Tile", ButtonSizes.Large)]
+    public void TriggerTile()
     {
-        Reveal();
+        PlateRigidbody.isKinematic = true;
+        FloatScript.enabled = false;
+        OnPress.Invoke();
+
+        if (Mine)
+        {
+            ExplodeMine();
+        }
+        else
+        {
+            TileLabel.enabled = true;
+        }
     }
 
-    void CheckMine()
+    [Button("Reset Tile", ButtonSizes.Large)]
+    public void ResetTile()
     {
-        if(Mine)
+        PlateRigidbody.transform.localPosition = Vector3.zero;
+        PlateRigidbody.isKinematic = false;
+        FloatScript.enabled = true;
+
+        if (Mine)
         {
             MinePrefab.SetActive(true);
         }
@@ -55,10 +76,15 @@ public class MineSweeperTile : MonoBehaviour
         {
             MinePrefab.SetActive(false);
         }
+
+        UpdateSurroundingNumbers();
     }
 
-    [Button("Check Surroundings", ButtonSizes.Large)]
-    public void CheckSurroundings()
+    #endregion
+
+    #region Helpers
+
+    public void UpdateSurroundingNumbers()
     {
         if(Mine)
         {
@@ -83,31 +109,24 @@ public class MineSweeperTile : MonoBehaviour
             TileLabel.text = "";
         }
     }
-    
-    public void Reveal()
-    {
-        PlateRigidbody.isKinematic = true;
-        FloatScript.enabled = false;
-        OnPress.Invoke();
 
-        if (Mine)
+    public void ExplodeMine()
+    {
+
+    }
+
+    public void HidePlate(bool status)
+    {
+        if(status)
         {
-            Explode();
+            PlateRigidbody.gameObject.SetActive(false);
         }
         else
         {
-            TileLabel.enabled = true;
+            PlateRigidbody.gameObject.SetActive(true);
         }
     }
 
-    public void Explode()
-    {
-
-    }
-
-    public void Hide()
-    {
-        TileLabel.enabled = false;
-    }
+    #endregion
 
 }

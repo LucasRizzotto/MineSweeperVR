@@ -13,6 +13,7 @@ public class MineSweeperGridManager : MonoBehaviour
 
     private float GridXOffset = 0f;
     private float GridYOffset = 0f;
+    private int CurrentMineNumber = 0;
   
     private GameObject TempGameObject;
 
@@ -60,7 +61,25 @@ public class MineSweeperGridManager : MonoBehaviour
     [Button("Reset Grid", ButtonSizes.Large)]
     public void ResetGrid()
     {
-        
+        CurrentMineNumber = 0;
+
+        for (int i = 0; i < Tiles.Count; i++)
+        {
+            if(CurrentMineNumber >= Grid.MaxMines)
+            {
+                return;
+            }
+            Tiles[i].Mine = ShouldGetMine();
+            Tiles[i].ResetTile();
+        }
+
+        // If we have no mines
+        if(CurrentMineNumber == 0)
+        {
+            int num = Random.Range(0, Tiles.Count);
+            Tiles[num].Mine = true;
+            Tiles[num].ResetTile();
+        }
     }
 
     [Button("Clear Grid", ButtonSizes.Large)]
@@ -81,4 +100,41 @@ public class MineSweeperGridManager : MonoBehaviour
         GridYOffset = 0f;
         Tiles.Clear();
     }
+
+    [Button("Hide Tiles", ButtonSizes.Large)]
+    public void HideTiles()
+    {
+        StartCoroutine(_HideTiles());
+    }
+
+    #region Helpers
+
+    public bool ShouldGetMine()
+    {
+        if (CurrentMineNumber >= Grid.MaxMines)
+        {
+            return false;
+        }
+
+        if (Random.Range(0, 1f) < Grid.MineRatio)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public IEnumerator _HideTiles()
+    {
+        for(int i = 0; i < Tiles.Count; i++)
+        {
+            Tiles[i].HidePlate(true);
+        }
+        yield return new WaitForSeconds(3f);
+        for (int i = 0; i < Tiles.Count; i++)
+        {
+            Tiles[i].HidePlate(false);
+        }
+    }
+
+    #endregion
 }
