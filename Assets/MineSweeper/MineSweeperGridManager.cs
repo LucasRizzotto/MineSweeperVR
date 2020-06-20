@@ -23,6 +23,8 @@ public class MineSweeperGridManager : MonoBehaviour
         {
             GenerateGrid();
         }
+
+        ResetGrid();
     }
 
     [Button("Generate Grid", ButtonSizes.Large)]
@@ -52,9 +54,28 @@ public class MineSweeperGridManager : MonoBehaviour
 
                 GridXOffset += TempGameObject.transform.localScale.x;
                 Tiles.Add(TempGameObject.GetComponent<MineSweeperTile>());
+                TempGameObject.GetComponent<MineSweeperTile>().GridManager = this;
             }
             GridXOffset = 0;
             GridYOffset += TempGameObject.transform.localScale.z;
+        }
+    }
+
+    [Button("Peek At Grid", ButtonSizes.Large)]
+    public void PeekAtGrid()
+    {
+        for(int i = 0; i < Tiles.Count; i++)
+        {
+            Tiles[i].PeekAtResult();
+        }
+    }
+
+    [Button("Press All Panels", ButtonSizes.Large)]
+    public void ShowGridResults()
+    {
+        for (int i = 0; i < Tiles.Count; i++)
+        {
+            Tiles[i].TriggerTile();
         }
     }
 

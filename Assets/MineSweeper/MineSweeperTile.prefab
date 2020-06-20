@@ -327,9 +327,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2cb6fe5c3310045913aae15d147ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridManager: {fileID: 0}
   TileLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  MineLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   Mine: 1
   NearbyMines: 0
   MinePrefab: {fileID: 8777631552049146587}
@@ -723,6 +727,11 @@ PrefabInstance:
     - target: {fileID: 5236094414873750072, guid: 0c907a6c2d84723448e915281720547d,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236094414873750072, guid: 0c907a6c2d84723448e915281720547d,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5280103027345867856, guid: 0c907a6c2d84723448e915281720547d,
@@ -804,6 +813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281998036508520160, guid: 0c907a6c2d84723448e915281720547d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c907a6c2d84723448e915281720547d, type: 3}
