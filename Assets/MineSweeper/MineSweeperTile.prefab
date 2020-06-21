@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5994307134419378516
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ Rigidbody:
   m_Drag: 4
   m_AngularDrag: 4
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4393048900658934145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcb12f654cab7304d9e464f70df830cc, type: 3}
   m_Name: 
@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 4393048901340493945}
   - component: {fileID: 4393048901340493944}
   - component: {fileID: 2914030753683019074}
+  - component: {fileID: 1995823041}
   m_Layer: 9
   m_Name: MineSweeperTile
   m_TagString: Untagged
@@ -342,7 +343,18 @@ MonoBehaviour:
   FloatScript: {fileID: 1584720984}
   OnPress:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1995823041}
+        m_MethodName: EndLerp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &4393048901340493944
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -372,6 +384,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1995823041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393048901340493947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b435635897cc7d843bd6e918a16f3ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LerpOnStart: 1
+  HeightLerpStart: 0
+  HeightLerpEnd: -0.175
+  DefaultPanelColor: {r: 0, g: 0, b: 0.003921569, a: 1}
+  PressingPanelColor: {r: 1, g: 1, b: 1, a: 1}
+  ActivatedPanelColor: {r: 1, g: 0, b: 0, a: 1}
+  GroundStartColor: {r: 1, g: 1, b: 1, a: 1}
+  GroundEndColor: {r: 1, g: 0, b: 0, a: 1}
+  GroundStartColorAdd: {r: 1, g: 1, b: 1, a: 1}
+  GroundEndColorAdd: {r: 1, g: 0, b: 0, a: 1}
+  GroundStartColorMultiply: {r: 0, g: 1, b: 0.14250803, a: 1}
+  GroundEndColorMultiply: {r: 1, g: 0, b: 0.6930003, a: 1}
+  TargetTransform: {fileID: 4393048900658934144}
+  TargetRenderer: {fileID: 4393048900658934158}
+  GroundRenderer: {fileID: 0}
+  InitialLerpRange: 0.2
+  Lerping: 0
 --- !u!1 &4393048902101808686
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +773,7 @@ PrefabInstance:
     - target: {fileID: 5236094414873750072, guid: 0c907a6c2d84723448e915281720547d,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5280103027345867856, guid: 0c907a6c2d84723448e915281720547d,
         type: 3}

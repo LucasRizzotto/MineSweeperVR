@@ -21,18 +21,26 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Edges
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9f0ea0e0c7ddfce449e2370cdf47c25d,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Cubemap_D1C40554:
+        m_Texture: {fileID: 8900000, guid: 0a345497283889f49b7c8637c2b84cb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_A357303A:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -62,6 +70,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_D75E0485: 0
+    - Vector1_ECB97158: 0.1
+    - Vector1_F046EA25: 0
+    - Vector1_FD68B689: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -69,6 +81,7 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FresnelPower: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -84,7 +97,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_17B86D29: {r: 1, g: 1, b: 1, a: 0}
+    - Color_23EDAADE: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0}
+    - Color_8D1B9D10: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0}
+    - Color_97A39C10: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 1, g: 0.7804068, b: 0.40094337, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

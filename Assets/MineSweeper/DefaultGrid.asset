@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b718915bed46dd34783075f7ef0ee41a, type: 3}
   m_Name: DefaultGrid
   m_EditorClassIdentifier: 
-  Xsize: 30
-  Ysize: 20
+  Xsize: 5
+  Ysize: 5
   TilePrefab: {fileID: 4393048901340493947, guid: 5450f3e489bcd7d47b06feb1b2af9e53,
     type: 3}
   TileSize: 1
